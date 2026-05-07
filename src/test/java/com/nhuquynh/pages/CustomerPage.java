@@ -12,6 +12,11 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class CustomerPage extends BasePage {
+    public CustomerPage() {
+        super();
+        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Customer");
+    }
+
     //ADD NEW CUSTOMER
     private By menuCustomers = By.xpath("//span[normalize-space()='Customers']");
     private By headerCustomerPage = By.xpath("//span[normalize-space()='Customers Summary']");

@@ -13,6 +13,11 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class ProjectPage extends BasePage {
+    public ProjectPage() {
+        super();
+        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
+    }
+
     //PROJECT PAGE
     private By inputSearchProject = By.xpath("//div[@id='projects_filter']//input");
     private By headerProjectPage = By.xpath("//span[normalize-space()='Projects Summary']");
@@ -129,8 +134,8 @@ public class ProjectPage extends BasePage {
     }
 
     public void submitDataForNewProject(int row) {
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
+//        ExcelHelper excelHelper = new ExcelHelper();
+//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
         WebUI.waitForPageLoaded();
 
         WebUI.setText(inputProjectName, excelHelper.getCellData("Project_Name", row));
@@ -167,8 +172,8 @@ public class ProjectPage extends BasePage {
     }
 
     public void searchProject(int row) {
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
+//        ExcelHelper excelHelper = new ExcelHelper();
+//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
         WebUI.waitForPageLoaded();
 
         //Search và check item đầu tiên có đúng project mình muốn edit kh
@@ -186,15 +191,15 @@ public class ProjectPage extends BasePage {
     }
 
     public void clickItemProject(int row) {
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
+//        ExcelHelper excelHelper = new ExcelHelper();
+//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
 
         WebUI.clickElement(itemProjectNameCheck(excelHelper.getCellData("Project_Name", row)));
     }
 
     public void editProject(int row) {
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
+//        ExcelHelper excelHelper = new ExcelHelper();
+//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
 
         WebUI.clickElement(buttonEdit(excelHelper.getCellData("Project_Number", row)));
         WebUI.waitForPageLoaded();
@@ -222,8 +227,8 @@ public class ProjectPage extends BasePage {
     }
 
     public void deleteProject(int row) {
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
+//        ExcelHelper excelHelper = new ExcelHelper();
+//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
 
         WebUI.clickElement(buttonDelete(excelHelper.getCellData("Project_Number", row)));
         WebUI.acceptAlert();
@@ -234,8 +239,8 @@ public class ProjectPage extends BasePage {
     }
 
     public void verifyProjectProfile(int row) {
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
+//        ExcelHelper excelHelper = new ExcelHelper();
+//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
 
         WebUI.waitForPageLoaded();
         WebUI.logConsole(WebUI.getElementText(titleProject));

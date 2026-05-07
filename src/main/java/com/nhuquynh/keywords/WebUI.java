@@ -19,6 +19,8 @@ import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class WebUI {
@@ -26,6 +28,26 @@ public class WebUI {
     private static int TIMEOUT = Integer.parseInt(PropertiesHelper.getValue("EXPLICIT_WAIT"));
     private static double STEP_TIME = 0.5;
     private static int PAGE_LOAD_TIMEOUT = 20;
+
+    public static String getStatusBasedOnDate(String startDateStr) {
+        // 1. Định nghĩa format tương ứng với dữ liệu trên UI (dd-MM-yyyy)
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        // 2. Parse chuỗi String sang kiểu LocalDate
+        LocalDate startDate = LocalDate.parse(startDateStr, formatter);
+
+        // 3. Lấy ngày hiện tại
+        LocalDate currentDate = LocalDate.now();
+
+        // 4. So sánh logic
+        if (startDate.isAfter(currentDate)) {
+            return "Not Started";
+        } else if (startDate.isEqual(currentDate)) {
+            return "In Progress"; // Hoặc "Starting Today" tùy logic của bạn
+        } else {
+            return "In Progress"; // Nếu ngày bắt đầu đã qua
+        }
+    }
 
     @Step("Check data: {1} in Table by column {2}")
     public static void checkDataInTableByColumn_Contains(int column, String value, String columnName) {

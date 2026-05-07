@@ -1,5 +1,6 @@
 package com.nhuquynh.pages;
 
+import com.nhuquynh.common.BasePage;
 import com.nhuquynh.drivers.DriverManager;
 import com.nhuquynh.helpers.ExcelHelper;
 import com.nhuquynh.helpers.PropertiesHelper;
@@ -8,7 +9,12 @@ import com.nhuquynh.utils.LogUtils;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
+    public LoginPage() {
+        super();
+        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Login");
+    }
+
     //Khai báo các element dạng đối tượng By (phương thức tìm kiếm)
     private By headerPage = By.xpath("//h1[normalize-space()='Login']");
     private By inputEmail = By.xpath("//input[@id='email']");
@@ -33,8 +39,8 @@ public class LoginPage {
         WebUI.clearText(inputEmail);
         WebUI.clearText(inputPassword);
 
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Login");
+//        ExcelHelper excelHelper = new ExcelHelper();
+//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Login");
 
         WebUI.setText(inputEmail, excelHelper.getCellData("Email", 1));
         WebUI.setText(inputPassword, excelHelper.getCellData("Password", 1));
@@ -57,8 +63,8 @@ public class LoginPage {
         WebUI.clearText(inputEmail);
         WebUI.clearText(inputPassword);
 
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Login");
+//        ExcelHelper excelHelper = new ExcelHelper();
+//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Login");
 
         WebUI.setText(inputEmail, excelHelper.getCellData("Email", 2));
         WebUI.setText(inputPassword, excelHelper.getCellData("Password", 2));
@@ -71,8 +77,8 @@ public class LoginPage {
         WebUI.clearText(inputEmail);
         WebUI.clearText(inputPassword);
 
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Login");
+//        ExcelHelper excelHelper = new ExcelHelper();
+//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Login");
 
         WebUI.setText(inputEmail, excelHelper.getCellData("Email", 3));
         WebUI.setText(inputPassword, excelHelper.getCellData("Password", 3));
