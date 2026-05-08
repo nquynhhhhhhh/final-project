@@ -58,7 +58,7 @@ public class WebUI {
         //Xác định số dòng của table sau khi search
         List<WebElement> row = DriverManager.getDriver().findElements(By.xpath("//table[@id='clients']//tbody/tr"));
         int rowTotal = row.size(); //Lấy ra số dòng
-        LogUtils.info("Số dòng tìm thấy: " + rowTotal);
+        LogUtils.info("Rows found: " + rowTotal);
 
         //Duyệt từng dòng
         for (int i = 1; i <= rowTotal; i++) {
@@ -82,7 +82,7 @@ public class WebUI {
         //Xác định số dòng của table sau khi search
         List<WebElement> row = DriverManager.getDriver().findElements(By.xpath("//table[@id='clients']//tbody/tr"));
         int rowTotal = row.size(); //Lấy ra số dòng
-        LogUtils.info("Số dòng tìm thấy: " + rowTotal);
+        LogUtils.info("Rows found: " + rowTotal);
 
         //Duyệt từng dòng
         for (int i = 1; i <= rowTotal; i++) {
@@ -258,11 +258,11 @@ public class WebUI {
             try {
                 WebElement element = getWebElement(by);
                 if (element != null) {
-                    LogUtils.info("Tìm thấy phần tử ở lần thử thứ " + (retryCount + 1));
+                    LogUtils.info("Element found on attempt " + (retryCount + 1));
                     return true; // Phần tử được tìm thấy
                 }
             } catch (NoSuchElementException e) {
-                LogUtils.info("Không tìm thấy phần tử. Thử lại lần " + (retryCount + 1));
+                LogUtils.info("Element not found. Retrying attempt " + (retryCount + 1));
                 retryCount++;
                 try {
                     Thread.sleep(waitTimeMillis); // Chờ trước khi thử lại
@@ -273,7 +273,7 @@ public class WebUI {
         }
 
         // Trả về false nếu không tìm thấy phần tử sau maxRetries lần
-        LogUtils.info("Không tìm thấy phần tử sau " + maxRetries + " lần thử.");
+        LogUtils.info("Element not found after " + maxRetries + " attempts.");
         return false;
     }
 

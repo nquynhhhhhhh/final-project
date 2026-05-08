@@ -32,13 +32,13 @@ public class CustomerTest extends BaseTest {
         customerPage.submitDataForNewCustomer(2);
         customerPage.verifyNavigateToCustomerDetailPage();
         //Lấy URL để check bên Project Page
-        customerPage.getAndSetURLCustomer();
+        //customerPage.getAndSetURLCustomer(2);
         customerPage.verifyAddNewCustomerSuccess(2);
         customerPage.clickMenuCustomer();
 
         int afterTotal = customerPage.getCustomersTotal();
         Assert.assertEquals(afterTotal, berofeTotal + 1, "The total customer beforeTotal and afterTotal not match ");
-        customerPage.setStatus();
+        customerPage.setStatus(2);
     }
 
     @Test

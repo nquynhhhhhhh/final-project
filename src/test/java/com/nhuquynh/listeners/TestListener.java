@@ -47,7 +47,7 @@ public class TestListener implements ITestListener {
     public void onTestStart(ITestResult result) {
         //ghi vào logs Files
         //ghi vào report chi tiết từng bước
-        LogUtils.info("➡\uFE0FBắt đầu chạy test case: " + result.getName());
+        LogUtils.info("➡\uFE0FStarting test case: " + result.getName());
         test_total++;
         CaptureHelper.startRecord(result.getName());
         //Bắt đầu ghi 1 TCs mới vào Extent Report

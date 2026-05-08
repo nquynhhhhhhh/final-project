@@ -96,8 +96,6 @@ public class TaskPage extends BasePage {
     }
 
     public void addTask_ProjectPage(int row){
-//        ExcelHelper excelHelper = new ExcelHelper();
-//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Task");
         WebUI.waitForPageLoaded();
 
         WebUI.isElementDisplayed(checkboxVisibleToCustomer);
@@ -141,8 +139,6 @@ public class TaskPage extends BasePage {
     }
 
     public void addTask_TaskPage(int row){
-//        ExcelHelper excelHelper = new ExcelHelper();
-//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Task");
         WebUI.waitForPageLoaded();
 
         WebUI.isElementNotDisplayed(checkboxVisibleToCustomer);
@@ -197,8 +193,6 @@ public class TaskPage extends BasePage {
     }
 
     public void searchTask(int row) {
-//        ExcelHelper excelHelper = new ExcelHelper();
-//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Task");
         WebUI.waitForPageLoaded();
 
         WebUI.setTextAndKey(inputSearchTask, excelHelper.getCellData("Subject",row), Keys.ENTER);

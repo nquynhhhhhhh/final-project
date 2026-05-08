@@ -66,6 +66,10 @@ public class CustomerPage extends BasePage {
     //ADD NEW CUSTOMER SUCCESS
     private By alertAddSuccess = By.xpath("//div[@id='alert_float_1']/span[normalize-space()='Customer added successfully.']");
     private By itemCustomerFirst = By.xpath("//table[@id='clients']/tbody/tr[1]/td[3]/a");
+//    private By itemCompanyNameOnTable(String customerNumber, String customerName) {
+//        By xpathTaskFirstOnTable = By.xpath("//tbody/tr[.//td[contains(text(),'"+ customerNumber +"')] and .//a[contains(text(),'"+ customerName +"')]]//a[normalize-space()='"+ customerName +"']");
+//        return xpathTaskFirstOnTable;
+//    }
     private By headerCustomerDetailPage = By.xpath("//h4[normalize-space()='Profile']");
 
     //total in customer list
@@ -83,8 +87,6 @@ public class CustomerPage extends BasePage {
     }
 
     public void submitDataForNewCustomer(int row) {
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Customer");
         WebUI.waitForPageLoaded();
 
         WebUI.setText(inputCompany, excelHelper.getCellData("Company", row));
@@ -92,9 +94,7 @@ public class CustomerPage extends BasePage {
         WebUI.setText(inputPhoneNumber, excelHelper.getCellData("Phone", row));
         WebUI.setText(inputWebsite, excelHelper.getCellData("Website", row));
         WebUI.sleep(1);
-        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
-        WebElement element = DriverManager.getDriver().findElement(labelGroup);
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        WebUI.scrollToElementAtTop(labelGroup);
         WebUI.clickElement(dropdownGroup);
         WebUI.setText(inputSearchGroup, excelHelper.getCellData("Groups", row));
         WebUI.clickElement(itemGroup(excelHelper.getCellData("Groups", row)));
@@ -110,6 +110,7 @@ public class CustomerPage extends BasePage {
         WebUI.clickElement(dropdownCountry);
         WebUI.setText(inputSearchCountry, excelHelper.getCellData("Country", row));
         WebUI.clickElement(itemCountry(excelHelper.getCellData("Country", row)));
+        WebUI.scrollToElementAtBottom(buttonSave);
         WebUI.clickElement(buttonSave);
         WebUI.sleep(1);
         //verify alert message
@@ -117,41 +118,37 @@ public class CustomerPage extends BasePage {
     }
 
     public void submitData_WithNullCompany(int row) {
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Customer");
         WebUI.waitForPageLoaded();
 
         WebUI.setText(inputVAT, excelHelper.getCellData("VAT", row));
         WebUI.setText(inputPhoneNumber, excelHelper.getCellData("Phone", row));
         WebUI.setText(inputWebsite, excelHelper.getCellData("Website", row));
         WebUI.sleep(1);
-        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
-        WebElement element = DriverManager.getDriver().findElement(labelGroup);
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        WebUI.scrollToElementAtTop(labelGroup);
         WebUI.clickElement(dropdownGroup);
         WebUI.setText(inputSearchGroup, excelHelper.getCellData("Groups", row));
         WebUI.clickElement(itemGroup(excelHelper.getCellData("Groups", row)));
         WebUI.clickElement(dropdownGroup);
         WebUI.sleep(1);
-        WebUI.clickElement(dropdownCurrency);
-        WebUI.setText(inputSearchCurrency, excelHelper.getCellData("Currency", row));
-        WebUI.clickElement(itemCurrency(excelHelper.getCellData("Currency", row)));
-        WebUI.clickElement(dropdownLanguage);
-        WebUI.clickElement(itemLanguage(excelHelper.getCellData("Language", row)));
-        WebUI.setText(inputAddress, excelHelper.getCellData("Address", row));
-        WebUI.setText(inputCity, excelHelper.getCellData("City", row));
-        WebUI.setText(inputState, excelHelper.getCellData("State", row));
-        WebUI.setText(inputZip, excelHelper.getCellData("Zip_Code", row));
-        WebUI.sleep(1);
+//        WebUI.clickElement(dropdownCurrency);
+//        WebUI.setText(inputSearchCurrency, excelHelper.getCellData("Currency", row));
+//        WebUI.clickElement(itemCurrency(excelHelper.getCellData("Currency", row)));
+//        WebUI.clickElement(dropdownLanguage);
+//        WebUI.clickElement(itemLanguage(excelHelper.getCellData("Language", row)));
+//        WebUI.setText(inputAddress, excelHelper.getCellData("Address", row));
+//        WebUI.setText(inputCity, excelHelper.getCellData("City", row));
+//        WebUI.setText(inputState, excelHelper.getCellData("State", row));
+//        WebUI.setText(inputZip, excelHelper.getCellData("Zip_Code", row));
+//        WebUI.sleep(1);
         WebUI.clickElement(dropdownCountry);
         WebUI.setText(inputSearchCountry, excelHelper.getCellData("Country", row));
         WebUI.clickElement(itemCountry(excelHelper.getCellData("Country", row)));
+        WebUI.scrollToElementAtBottom(buttonSave);
         WebUI.clickElement(buttonSave);
         WebUI.sleep(1);
-        WebUI.assertEquals(WebUI.getCurrentURL(), "https://crm.anhtester.com/admin/clients/client", "FAIL. Vẫn tạo Customer dù không đin Company");
+        WebUI.assertEquals(WebUI.getCurrentURL(), "https://crm.anhtester.com/admin/clients/client", "FAIL. Vẫn tạo Customer dù không điền Company");
         WebUI.sleep(1);
-        WebElement element2 = DriverManager.getDriver().findElement(labelCompany);
-        js.executeScript("arguments[0].scrollIntoView(true);", element2);
+        WebUI.scrollToElementAtTop(labelCompany);
         WebUI.assertEquals(WebUI.getElementText(errorCompany), "This field is required.", "The error company not match");
     }
 
@@ -161,9 +158,6 @@ public class CustomerPage extends BasePage {
     }
 
     public void verifyAddNewCustomerSuccess(int row) {
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Customer");
-
         //verify data
         WebUI.assertEquals(DriverManager.getDriver().findElement(inputCompany).getAttribute("value"), excelHelper.getCellData("Company", row), "The Company Name not match");
         WebUI.assertEquals(DriverManager.getDriver().findElement(inputVAT).getAttribute("value"), excelHelper.getCellData("VAT", row), "The VAT value not match");
@@ -179,9 +173,6 @@ public class CustomerPage extends BasePage {
     }
 
     public void searchAndCheckCustomerInTable(int row) {
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Customer");
-
         clickMenuCustomer();
         WebUI.setText(inputSearchCustomer, excelHelper.getCellData("Company", row));
         WebUI.sleep(2);
@@ -196,18 +187,14 @@ public class CustomerPage extends BasePage {
         return Integer.parseInt(totalString);
     }
 
-    public void setStatus() {
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Customer");
-        excelHelper.setCellData("Passed", "Status", 1);
+    public void setStatus(int row) {
+        excelHelper.setCellData("Passed", "Status", row);
     }
 
-    public void getAndSetURLCustomer() {
-        String url = WebUI.getCurrentURL();
-        WebUI.logConsole(url);
-        ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Customer");
-        excelHelper.setCellData(url, "URL_Customer", 1);
-    }
+//    public void getAndSetURLCustomer(int row) {
+//        String url = WebUI.getCurrentURL();
+//        WebUI.logConsole(url);
+//        excelHelper.setCellData(url, "URL_Customer", row);
+//    }
 
 }
