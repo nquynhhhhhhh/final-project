@@ -2,7 +2,6 @@ package com.nhuquynh.pages;
 
 import com.nhuquynh.common.BasePage;
 import com.nhuquynh.drivers.DriverManager;
-import com.nhuquynh.helpers.ExcelHelper;
 import com.nhuquynh.helpers.PropertiesHelper;
 import com.nhuquynh.helpers.SystemHelper;
 import com.nhuquynh.keywords.WebUI;
@@ -25,9 +24,13 @@ public class TaskPage extends BasePage {
     private By headerTaskPage = By.xpath("//span[normalize-space()='Tasks Summary']");
     private By buttonAddNewTask = By.xpath("//a[normalize-space()='New Task']");
     private By inputSearchTask = By.xpath("//div[@id='tasks_filter']//input");
-    private By itemTaskFirstOnTable(String projectName) {
-        By xpathTaskFirstOnTable = By.xpath("//tbody/tr[1]//a[contains(text(),'"+ projectName +"')]/preceding-sibling::a");
-        return xpathTaskFirstOnTable;
+    private By itemTaskNumberFirstOnTable(String taskName) {
+        By xpathTaskNumberFirstOnTable = By.xpath("//a[contains(text(),'"+ taskName +"')]/parent::td/preceding-sibling::td//a");
+        return xpathTaskNumberFirstOnTable;
+    }
+    private By itemTaskNameFirstOnTable(String taskNumber, String taskName) {
+        By xpathTaskNameFirstOnTable = By.xpath("//tr[.//a[contains(text(),'"+ taskNumber +"')] and .//a[contains(text(),'"+ taskName +"')]]//a[contains(text(),'"+ taskNumber +"')]");
+        return xpathTaskNameFirstOnTable;
     }
 //ADD TASK
     private By headerAddNewTask = By.xpath("//h4[@id='myModalLabel']");
@@ -76,12 +79,14 @@ public class TaskPage extends BasePage {
     private By inputTags = By.xpath("//div[@id='inputTagsWrapper']//input[@placeholder='Tag']");
     private By textareaTaskDescription = By.xpath("//div[@class='form-group no-mbot']//textarea[@id='description']");
     private By inputTaskDescription = By.xpath("//body[@id='tinymce']");
-    private By buttonSave = By.xpath("//div[@role='document']//button[normalize-space()='Save']");
+    private By buttonSave = By.xpath("//div[@id='_task_modal']//button[normalize-space()='Save']");
 //VERIFY SAU KHI ADD
-    private By headerTask(String title){
-        By xpathHeader = By.xpath("//h4[contains(text(),'"+ title +"')]");
-        return xpathHeader;
+    private By titleTask(String title){
+        By xpathTitle = By.xpath("//div[@id='task-modal']//h4[contains(text(), '"+ title +"')]");
+        return xpathTitle;
     }
+    private By headerTask = By.xpath("//div[@id='task-modal']//h4[contains(@class, 'modal-title')]");
+    private By buttonClose = By.xpath("//div[@id='task-modal']//button[@class='close']");
 
 
 
@@ -131,11 +136,10 @@ public class TaskPage extends BasePage {
         WebUI.setText(inputTags,excelHelper.getCellData("Tags",row));
         WebUI.sleep(1);
         WebUI.clickElement(textareaTaskDescription);
-        WebUI.sleep(1);
+        WebUI.sleep(2);
         WebUI.setTextOnFrameDescription(inputTaskDescription,excelHelper.getCellData("Task Description",row));
         WebUI.scrollToElementAtBottom(buttonSave);
         WebUI.clickElement(buttonSave);
-        WebUI.sleep(1);
     }
 
     public void addTask_TaskPage(int row){
@@ -185,24 +189,34 @@ public class TaskPage extends BasePage {
         WebUI.setTextOnFrameDescription(inputTaskDescription,excelHelper.getCellData("Task Description",row));
         WebUI.scrollToElementAtBottom(buttonSave);
         WebUI.clickElement(buttonSave);
-        WebUI.sleep(1);
     }
 
-    public void verifyAddTaskSuccess(){
+    public void verifyAddTaskSuccess(int row){
+        WebUI.sleep(10);
+        String elementSubject = WebUI.getElementText(headerTask);
+        String cleanText = elementSubject.split("\n")[0].trim();
+        WebUI.logConsole("Subject: " + cleanText);
 
+        String expectedSubject = excelHelper.getCellData("Subject",row);
+        WebUI.assertEquals(cleanText, expectedSubject,"Title not match");
+
+    }
+
+    public void closeModal(){
+        WebUI.sleep(2);
+        WebUI. clickElement(buttonClose);
+        WebUI.sleep(3);
     }
 
     public void searchTask(int row) {
         WebUI.waitForPageLoaded();
-
         WebUI.setTextAndKey(inputSearchTask, excelHelper.getCellData("Subject",row), Keys.ENTER);
-        WebUI.sleep(1);
         WebUI.waitForPageLoaded();
-
-        WebUI.getElementText(itemTaskFirstOnTable(excelHelper.getCellData("Project",row)));
-
-
-
+        String taskNumber = WebUI.getElementText(itemTaskNumberFirstOnTable(excelHelper.getCellData("Subject", row)));
+        excelHelper.setCellData(taskNumber, "Task_Number", row);
+        WebUI.sleep(2);
+        WebUI.clickElement(itemTaskNameFirstOnTable(excelHelper.getCellData("Task_Number",row),excelHelper.getCellData("Subject",row)));
+        WebUI.sleep(2);
     }
 
 

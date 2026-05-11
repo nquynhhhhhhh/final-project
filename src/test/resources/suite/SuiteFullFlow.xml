@@ -22,7 +22,7 @@
             </class>
             <class name="com.nhuquynh.testcases.TaskTest">
                 <methods>
-                    <include name="testAddNewTask_FromProjectPage"></include>
+                    <include name="testAddNewTask_FromTaskPage"></include>
                 </methods>
             </class>
 

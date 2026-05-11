@@ -27,13 +27,16 @@ public class TaskTest extends BaseTest {
         loginPage = new LoginPage();
         dashboardPage = loginPage.loginCRM();
         projectPage = dashboardPage.clickMenuProject();
-        projectPage.searchProject(1);
-        projectPage.clickItemProject(1);
-        projectPage.verifyProjectProfile(1);
+        projectPage.searchProject(2);
+        projectPage.clickItemProject(2);
+        projectPage.verifyProjectProfile(2);
         taskPage = projectPage.clickButtonAddTask();
         taskPage.verifyAddNewTaskDisplayed();
-        taskPage.addTask_ProjectPage(1);
-
+        taskPage.addTask_ProjectPage(2);
+        taskPage.verifyAddTaskSuccess(2);
+        taskPage.closeModal();
+        taskPage.clickMenuTask();
+        taskPage.searchTask(2);
     }
 
     @Test
@@ -43,7 +46,11 @@ public class TaskTest extends BaseTest {
         taskPage = dashboardPage.clickMenuTask();
         taskPage.clickAddTask();
         taskPage.verifyAddNewTaskDisplayed();
-        taskPage.addTask_TaskPage(2);
+        taskPage.addTask_TaskPage(1);
+        taskPage.verifyAddTaskSuccess(1);
+        taskPage.closeModal();
+        taskPage.clickMenuTask();
+        taskPage.searchTask(1);
     }
 
 
