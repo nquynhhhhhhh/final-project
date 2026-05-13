@@ -2,7 +2,7 @@
 
 <suite name="Suite Parallel Test Project" verbose="1">
 
-    <test name="Project Test" parallel="methods" thread-count="2">
+    <test name="Project Test">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="com.nhuquynh.testcases.ProjectTest"/>

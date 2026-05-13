@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Master Suite" verbose="1">
+
+    <suite-files>
+        <suite-file path="SuiteParallelLogin.xml" />
+        <suite-file path="SuiteParallelCustomer.xml" />
+        <suite-file path="SuiteParallelProject.xml"/>
+        <suite-file path="SuiteParallelTask.xml"/>
+    </suite-files>
+</suite>

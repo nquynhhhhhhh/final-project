@@ -2,7 +2,7 @@
 
 <suite name="Suite Parallel Test Task" verbose="1">
 
-    <test name="Task Test" parallel="methods" thread-count="2">
+    <test name="Task Test">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="com.nhuquynh.testcases.TaskTest"/>

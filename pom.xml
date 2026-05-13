@@ -150,7 +150,7 @@
                     <configuration>
                         <suiteXmlFiles>
                             <!-- Call Suite name -->
-                            <suiteXmlFile>src/test/resources/suite/SuiteFullFlow.xml</suiteXmlFile>
+                            <suiteXmlFile>src/test/resources/suite/SuiteMaster.xml</suiteXmlFile>
                         </suiteXmlFiles>
                         <argLine>
                             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.24/aspectjweaver-1.9.24.jar"

@@ -21,7 +21,7 @@ public class CustomerTest extends BaseTest {
         excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Customer");
     }
 
-    @Test
+    @Test (priority = 1)
     public void testAddNewCustomer() {
         loginPage = new LoginPage();
         dashboardPage = loginPage.loginCRM();

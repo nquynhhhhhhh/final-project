@@ -22,35 +22,35 @@ public class TaskTest extends BaseTest {
         excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"),"Task");
     }
 
-    @Test
+    @Test(priority = 1)
     public void testAddNewTask_FromProjectPage(){
         loginPage = new LoginPage();
         dashboardPage = loginPage.loginCRM();
         projectPage = dashboardPage.clickMenuProject();
-        projectPage.searchProject(2);
-        projectPage.clickItemProject(2);
-        projectPage.verifyProjectProfile(2);
+        projectPage.searchProject(1);
+        projectPage.clickItemProject(1);
+        projectPage.verifyProjectProfile(1);
         taskPage = projectPage.clickButtonAddTask();
         taskPage.verifyAddNewTaskDisplayed();
-        taskPage.addTask_ProjectPage(2);
-        taskPage.verifyAddTaskSuccess(2);
+        taskPage.addTask_ProjectPage(1);
+        taskPage.verifyAddTaskSuccess(1);
         taskPage.closeModal();
         taskPage.clickMenuTask();
-        taskPage.searchTask(2);
+        taskPage.searchTask(1);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testAddNewTask_FromTaskPage(){
         loginPage = new LoginPage();
         dashboardPage = loginPage.loginCRM();
         taskPage = dashboardPage.clickMenuTask();
         taskPage.clickAddTask();
         taskPage.verifyAddNewTaskDisplayed();
-        taskPage.addTask_TaskPage(1);
-        taskPage.verifyAddTaskSuccess(1);
+        taskPage.addTask_TaskPage(2);
+        taskPage.verifyAddTaskSuccess(2);
         taskPage.closeModal();
         taskPage.clickMenuTask();
-        taskPage.searchTask(1);
+        taskPage.searchTask(2);
     }
 
 
