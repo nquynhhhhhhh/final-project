@@ -31,8 +31,6 @@ public class CustomerTest extends BaseTest {
         customerPage.clickButtonAddNewCustomer();
         customerPage.submitDataForNewCustomer(1);
         customerPage.verifyNavigateToCustomerDetailPage();
-        //Lấy URL để check bên Project Page
-        //customerPage.getAndSetURLCustomer(2);
         customerPage.verifyAddNewCustomerSuccess(1);
         customerPage.clickMenuCustomer();
 

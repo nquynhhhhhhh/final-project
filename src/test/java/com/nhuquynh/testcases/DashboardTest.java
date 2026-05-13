@@ -14,6 +14,9 @@ public class DashboardTest extends BaseTest {
         loginPage = new LoginPage();
 
         dashboardPage = loginPage.loginCRM();
-        dashboardPage.verifyInvoicesAwaitingPayment("1 / 3");
+        dashboardPage.verifyInvoicesAwaitingPayment();
+        dashboardPage.verifyConvertedLeads();
+        dashboardPage.verifyProjectsInProgress();
+        dashboardPage.verifyTasksNotFinished();
     }
 }

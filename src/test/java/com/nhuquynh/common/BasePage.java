@@ -14,8 +14,6 @@ public class BasePage {
     public BasePage() {
         excelHelper = new ExcelHelper();
     }
-
-    private By menuDashboard = By.xpath("//span[normalize-space()='Dashboard']");
     private By menuCustomers = By.xpath("//span[normalize-space()='Customers']");
     private By menuTasks = By.xpath("//span[normalize-space()='Tasks']");
     private By menuProjects = By.xpath("//span[normalize-space()='Projects']");

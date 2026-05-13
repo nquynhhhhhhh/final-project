@@ -229,7 +229,6 @@ public class ProjectPage extends BasePage {
         String projectNumber = WebUI.getElementText(overviewProjectNumber);
         excelHelper.setCellData(projectNumber, "Project_Number", row);
         WebUI.assertEquals(DriverManager.getDriver().findElement(overviewCustomer(excelHelper.getCellData("Customer", row))).getText(), excelHelper.getCellData("Customer", row), "The Customer not match");
-//        WebUI.assertEquals(DriverManager.getDriver().findElement(linkCustomer).getAttribute("href"),excelHelper.getCellData("URL_Customer",row),"The Customer Link not match");
     }
 
     public TaskPage clickButtonAddTask() {

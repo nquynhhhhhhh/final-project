@@ -191,10 +191,6 @@ public class CustomerPage extends BasePage {
         excelHelper.setCellData("Passed", "Status", row);
     }
 
-//    public void getAndSetURLCustomer(int row) {
-//        String url = WebUI.getCurrentURL();
-//        WebUI.logConsole(url);
-//        excelHelper.setCellData(url, "URL_Customer", row);
-//    }
+
 
 }
