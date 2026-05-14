@@ -16,7 +16,7 @@ public class ProjectPage extends BasePage {
         excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Project");
     }
 
-    //PROJECT PAGE
+//PROJECT PAGE
     private By inputSearchProject = By.xpath("//div[@id='projects_filter']//input");
     private By headerProjectPage = By.xpath("//span[normalize-space()='Projects Summary']");
     private By totalProjectInProgress = By.xpath("//span[normalize-space()='In Progress']/preceding-sibling::span");
@@ -40,7 +40,7 @@ public class ProjectPage extends BasePage {
     private By popupDeleteSuccess = By.xpath("//span[normalize-space()='Project deleted']");
     private By emptyState = By.xpath("//td[normalize-space()='No matching records found']");
 
-    //ADD NEW PROJECT
+//ADD NEW PROJECT
     private By titleAddNewProject = By.xpath("//a[normalize-space()='Project']/preceding::h4");
     private By inputProjectName = By.xpath("//input[@id='name']");
     private By dropdownCustomer = By.xpath("//button[@data-id='clientid']");
@@ -77,7 +77,7 @@ public class ProjectPage extends BasePage {
     private By checkboxSendProjectCreateEmail = By.xpath("//input[@id='send_created_email']");
     private By buttonSaveProject = By.xpath("//button[normalize-space()='Save']");
 
-    //OVERVIEW PROJECT
+//OVERVIEW PROJECT
     private By titleProject = By.xpath("//button[@data-id='project_top']");
     private By overviewProjectNumber = By.xpath("//div[contains(@class,'project-overview-id')]/dd");
     private By tabOverview = By.xpath("//a[normalize-space()='Overview']");
@@ -121,7 +121,7 @@ public class ProjectPage extends BasePage {
     private By buttonAddTaskOnProjectPage = By.xpath("//a[normalize-space()='New Task']");
 
 
-    //===========================HÀM XỬ LÝ=================================
+//=============================HÀM XỬ LÝ===================================
     public void verifyNavigateToProjectPage() {
         Assert.assertTrue(WebUI.checkElementExist(headerProjectPage), "The Project header page not dissplay.");
         Assert.assertEquals(WebUI.getElementText(headerProjectPage), "Projects Summary", "The Project header page not match");

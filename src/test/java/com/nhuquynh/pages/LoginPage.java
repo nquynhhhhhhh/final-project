@@ -24,6 +24,8 @@ public class LoginPage extends BasePage {
     private By errorMessage1 = By.xpath("(//div[contains(@class,'alert-danger')])[1]");
     private By errorMessage2 = By.xpath("(//div[contains(@class,'alert-danger')])[2]");
 
+
+//=============================HÀM XỬ LÝ===================================
     public DashboardPage loginCRM() {
         WebUI.openURL(PropertiesHelper.getValue("URL"));
         WebUI.setText(inputEmail, PropertiesHelper.getValue("EMAIL"));
@@ -38,9 +40,6 @@ public class LoginPage extends BasePage {
         WebUI.waitForPageLoaded();
         WebUI.clearText(inputEmail);
         WebUI.clearText(inputPassword);
-
-//        ExcelHelper excelHelper = new ExcelHelper();
-//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Login");
 
         WebUI.setText(inputEmail, excelHelper.getCellData("Email", 1));
         WebUI.setText(inputPassword, excelHelper.getCellData("Password", 1));
@@ -63,9 +62,6 @@ public class LoginPage extends BasePage {
         WebUI.clearText(inputEmail);
         WebUI.clearText(inputPassword);
 
-//        ExcelHelper excelHelper = new ExcelHelper();
-//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Login");
-
         WebUI.setText(inputEmail, excelHelper.getCellData("Email", 2));
         WebUI.setText(inputPassword, excelHelper.getCellData("Password", 2));
         WebUI.clickElement(buttonLogin);
@@ -76,9 +72,6 @@ public class LoginPage extends BasePage {
         WebUI.waitForPageLoaded();
         WebUI.clearText(inputEmail);
         WebUI.clearText(inputPassword);
-
-//        ExcelHelper excelHelper = new ExcelHelper();
-//        excelHelper.setExcelFile(PropertiesHelper.getValue("EXCEL_DATA_FILE_PATH"), "Login");
 
         WebUI.setText(inputEmail, excelHelper.getCellData("Email", 3));
         WebUI.setText(inputPassword, excelHelper.getCellData("Password", 3));

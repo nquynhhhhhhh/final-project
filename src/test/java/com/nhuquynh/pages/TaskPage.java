@@ -20,6 +20,7 @@ public class TaskPage extends BasePage {
 //PROJECT PAGE (ADD TASK)
     private By buttonAddTaskOnProjectPage = By.xpath("//a[normalize-space()='New Task']");
     private By overviewProjectNumber = By.xpath("//div[contains(@class,'project-overview-id')]/dd");
+
 //TASK PAGE
     private By headerTaskPage = By.xpath("//span[normalize-space()='Tasks Summary']");
     private By buttonAddNewTask = By.xpath("//a[normalize-space()='New Task']");
@@ -32,6 +33,7 @@ public class TaskPage extends BasePage {
         By xpathTaskNameFirstOnTable = By.xpath("//tr[.//a[contains(text(),'"+ taskNumber +"')] and .//a[contains(text(),'"+ taskName +"')]]//a[contains(text(),'"+ taskNumber +"')]");
         return xpathTaskNameFirstOnTable;
     }
+
 //ADD TASK
     private By headerAddNewTask = By.xpath("//h4[@id='myModalLabel']");
     private By inputPublic = By.xpath("//input[@id='task_is_public'");
@@ -80,6 +82,7 @@ public class TaskPage extends BasePage {
     private By textareaTaskDescription = By.xpath("//div[@class='form-group no-mbot']//textarea[@id='description']");
     private By inputTaskDescription = By.xpath("//body[@id='tinymce']");
     private By buttonSave = By.xpath("//div[@id='_task_modal']//button[normalize-space()='Save']");
+
 //VERIFY SAU KHI ADD
     private By titleTask(String title){
         By xpathTitle = By.xpath("//div[@id='task-modal']//h4[contains(text(), '"+ title +"')]");
