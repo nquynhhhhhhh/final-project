@@ -53,7 +53,7 @@ Overview
 
 Shows test execution summary with pass rate and suite distribution.
 
-![Allure Report Results](image/allure_report.png)
+![img.png](img.png)
 
 # 👩‍💻 Author
 **Phạm Như Quỳnh**
